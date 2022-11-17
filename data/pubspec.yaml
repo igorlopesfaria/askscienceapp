@@ -1,0 +1,36 @@
+name: data
+description: A Data Module
+
+version: 1.0.0
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: 0.17.0
+  injectable: ^1.5.3
+  get_it: ^7.2.0
+  equatable: ^2.0.3
+  mocktail: ^0.3.0
+  dio: ^4.0.6
+  model:
+    path: ../model
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+  flutter_lints: 2.0.0
+  build_runner: 2.1.11
+  injectable_generator: 1.5.3
+  commons:
+    path: ../commons
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: br.com.askscience.data
+    iosBundleIdentifier: br.com.askscience.data

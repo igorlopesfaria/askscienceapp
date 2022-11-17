@@ -1,7 +1,7 @@
-name: commons
+name: feature
 description: A Commons Module containing all Flutter abstractions and utils
 
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -9,10 +9,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  injectable: 1.5.3
-  get_it: 7.2.0
-  dio: 4.0.6
+  design_system:
+    path: ../design_system
+  domain:
+    path: ../domain
+  model:
+    path: ../model
   intl: 0.17.0
+  injectable: ^1.5.3
+  get_it: ^7.2.0
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
 
 dev_dependencies:
   flutter_test:

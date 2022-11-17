@@ -1,5 +1,5 @@
-name: commons
-description: A Commons Module containing all Flutter abstractions and utils
+name: model
+description: A Model Module containing all Models
 
 version: 1.0.0+1
 
@@ -9,9 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  injectable: 1.5.3
-  get_it: 7.2.0
-  dio: 4.0.6
+  equatable: ^2.0.3
   intl: 0.17.0
 
 dev_dependencies:
@@ -25,5 +23,5 @@ flutter:
   uses-material-design: true
   module:
     androidX: true
-    androidPackage: br.com.askscience.commons
-    iosBundleIdentifier: br.com.askscience.commons
+    androidPackage: br.com.askscience.model
+    iosBundleIdentifier: br.com.askscience.model

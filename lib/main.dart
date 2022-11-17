@@ -1,6 +1,10 @@
+import 'package:data/di/data_module.dart';
+
+import '../di/injection.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  await configureDependencies();
   runApp(const MyApp());
 }
 
