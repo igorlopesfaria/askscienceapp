@@ -26,7 +26,6 @@ class DSCheckboxStyle {
     width(28),
     align(Alignment.center),
 
-
     active(
         border(
           color: token.color.primary.normal,
@@ -40,28 +39,7 @@ class DSCheckboxStyle {
         width: token.border.size.thick,
       ),
       bgColor(token.color.light.pure),
-    ),
-    // active(
-    //   border(
-    //     color: token.color.light.two,
-    //     width: token.border.size.thick,
-    //   ),
-    //   bgColor(token.color.light.pure),
-    // ),
-    // (disabled & inactive)(
-    //   border(
-    //     color: token.color.light.two,
-    //     width: token.border.size.thick,
-    //   ),
-    //   bgColor(token.color.light.one),
-    // ),
-    // (disabled & active)(
-    //   border(
-    //     color: token.color.light.two,
-    //     width: token.border.size.thick,
-    //   ),
-    //   bgColor(token.color.light.one),
-    // ),
+    )
   );
   
   Color iconColor(bool activated, bool disabled) {
