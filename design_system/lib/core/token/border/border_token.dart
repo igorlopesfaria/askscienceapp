@@ -17,12 +17,14 @@ class BorderSizeTokenBase {
     required this.thin,
     required this.thick,
     required this.thicker,
+    required this.radio
   });
 
   final double heightDefault;
   final double thin;
   final double thick;
   final double thicker;
+  final double radio;
 }
 
 class BorderRadiusTokenBase {

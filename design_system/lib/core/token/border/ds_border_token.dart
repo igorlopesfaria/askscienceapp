@@ -23,11 +23,13 @@ class DSBorderSizeToken implements BorderSizeTokenBase {
     double? thin,
     double? thick,
     double? thicker,
+    double? radio,
   }) {
     this.heightDefault = heightDefault ?? this.heightDefault;
     this.thin = thin ?? this.thin;
     this.thick = thick ?? this.thick;
     this.thicker = thicker ?? this.thicker;
+    this.radio = radio ?? this.radio;
   }
 
   @override
@@ -41,6 +43,10 @@ class DSBorderSizeToken implements BorderSizeTokenBase {
 
   @override
   double thicker = 4;
+
+  @override
+  double radio = 8;
+
 }
 
 class DSBorderRadiusToken implements BorderRadiusTokenBase {

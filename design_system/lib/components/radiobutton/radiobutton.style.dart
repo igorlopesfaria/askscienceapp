@@ -35,7 +35,7 @@ class DSRadioButtonStyle {
     active(
       border(
         color: token.color.primary.normal,
-        width: token.border.size.thicker,
+        width: token.border.size.radio,
       ),
       bgColor(token.color.light.pure),
     ),
