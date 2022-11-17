@@ -1,0 +1,43 @@
+name: design_system
+description: A Design System module containing all widgets and styles
+
+version: 1.0.0
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: 0.17.0
+  plugin_platform_interface: ^2.0.2
+  mix: ^0.0.7
+  flushbar: ^1.10.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 2.0.0
+  build_runner: 2.1.11
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: br.com.askscience.designsystem
+    iosBundleIdentifier: br.com.askscience.designsystem
+
+  assets:
+    - assets/icons/
+
+  fonts:
+    - family: IBMPlexSans
+      fonts:
+        - asset: fonts/IBMPlexSans-Regular.ttf
+          weight: 400
+        - asset: fonts/IBMPlexSans-Light.ttf
+          weight: 300
+        - asset: fonts/IBMPlexSans-Bold.ttf
+          weight: 600
+        - asset: fonts/IBMPlexSans-Medium.ttf
+          weight: 500
