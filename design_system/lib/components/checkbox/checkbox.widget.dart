@@ -15,7 +15,8 @@ class DSCheckbox extends StatelessWidget {
   }) : props = DSCheckboxProps(
       value: value,
       onChanged: onChanged,
-      label: label);
+      label: label
+  );
 
   final DSCheckboxProps props;
 
@@ -48,8 +49,8 @@ class DSCheckbox extends StatelessWidget {
             mix: styleCheckbox.labelPadding,
             child: DSTextWidget(
               text: props.label,
-              typographyStyle: DSTypographyStyleType.paragraph2,
-              typographyColor: DSTypographyColorType.secondary,
+              typographyStyle: DSTypographyStyleType.paragraph1,
+              typographyColor: DSTypographyColorType.primary,
             ),
           ),
         ]));

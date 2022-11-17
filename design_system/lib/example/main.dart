@@ -3,6 +3,7 @@ import 'package:design_system/example/bottomsheet/bottomsheet_example_page.dart'
 import 'package:design_system/example/button/buton_bottomsheet_page.dart';
 import 'package:design_system/example/checkbox/checkbox_example_page.dart';
 import 'package:design_system/example/feedback/feedback_example_page.dart';
+import 'package:design_system/example/radiobutton/radiobutton_example_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -35,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(title: const Text('TEST DESGIN SYSTEM')),
-            body: const CheckboxExample()
+            body: const RadioButtonExample()
         )
     );
   }
