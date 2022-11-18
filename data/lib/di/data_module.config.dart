@@ -26,9 +26,10 @@ _i1.GetIt $initDataGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.MedicalSpecialtyDataSource>(
-      () => _i3.MedicalSpecialtyDataSource(get<_i4.Dio>()));
-  gh.factory<_i5.MedicalSpecialtyRepository>(() =>
-      _i5.MedicalSpecialtyRepository(get<_i3.MedicalSpecialtyDataSource>()));
+  gh.factory<_i3.IMedicalSpecialtyRemoteDataSource>(
+      () => _i3.MedicalSpecialtyRemoteDataSource(get<_i4.Dio>()));
+  gh.factory<_i5.IMedicalSpecialtyRepository>(() =>
+      _i5.MedicalSpecialtyRepository(
+          get<_i3.IMedicalSpecialtyRemoteDataSource>()));
   return get;
 }

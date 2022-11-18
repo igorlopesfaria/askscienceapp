@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:domain/medical_specialty/medical_specialty_use_case.dart'
+import 'package:domain/medical_specialty/get_medical_specialty_list_use_case.dart'
     as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
@@ -26,6 +26,6 @@ _i1.GetIt $initFeatureGetIt(
     environmentFilter,
   );
   gh.factory<_i3.MedicalSpecialtyListCubit>(() => _i3.MedicalSpecialtyListCubit(
-      getMedicalListUseCase: get<_i4.GetListMedicalSpecialtyUseCase>()));
+      getMedicalListUseCase: get<_i4.IGetMedicalSpecialtyListUseCase>()));
   return get;
 }

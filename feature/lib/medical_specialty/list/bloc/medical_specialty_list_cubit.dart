@@ -1,4 +1,4 @@
-import 'package:domain/medical_specialty/medical_specialty_use_case.dart';
+import 'package:domain/medical_specialty/get_medical_specialty_list_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -15,7 +15,7 @@ class MedicalSpecialtyListCubit extends Cubit<MedicalSpecialtyListState> {
     getMedicalSpecialtyList();
   }
 
-  final GetListMedicalSpecialtyUseCase getMedicalListUseCase;
+  final IGetMedicalSpecialtyListUseCase getMedicalListUseCase;
 
   final MedicalSpecialtyFeedbackUIModel emptyState =
       const MedicalSpecialtyFeedbackUIModel(
@@ -33,7 +33,7 @@ class MedicalSpecialtyListCubit extends Cubit<MedicalSpecialtyListState> {
   void getMedicalSpecialtyList() async {
     try {
       emit(MedicalSpecialtyListLoadingState());
-      final listMedicalSpecialty = await getMedicalListUseCase.call();
+      final listMedicalSpecialty = await getMedicalListUseCase.invoke();
 
       if (listMedicalSpecialty.isNotEmpty) {
         emit(MedicalSpecialtyListLoadedState(listMedicalSpecialty

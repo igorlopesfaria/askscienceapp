@@ -1,0 +1,16 @@
+{
+  "data" : [
+    {
+      "id": 1,
+      "name": "Anestesiologia"
+    },
+    {
+      "id": 2,
+      "name": "Alergologia"
+    },
+    {
+      "id": 3,
+      "name": "Cardiologia"
+    }
+  ]
+}

@@ -19,14 +19,14 @@ void main() {
 
   test('GIVEN timeout server response WHEN server does not respond THEN throw custom TimeoutException', () async {
     MockDio dio = MockDio();
-    MedicalSpecialtyDataSource dataSource = MedicalSpecialtyDataSource(dio);
+    IMedicalSpecialtyRemoteDataSource dataSource = MedicalSpecialtyRemoteDataSource(dio);
     when(() => dio.get(path)).thenAnswer((invocation) => throw TimeoutException);
     expect(() => (dataSource.getMedicalSpecialty()), throwsA(const TypeMatcher<ServerException>()));
   });
 
   test('GIVEN correct server response WHEN server respond http status 200 THEN return correct JSON', () async {
     MockDio dio = MockDio();
-    MedicalSpecialtyDataSource dataSource = MedicalSpecialtyDataSource(dio);
+    IMedicalSpecialtyRemoteDataSource dataSource = MedicalSpecialtyRemoteDataSource(dio);
     final mockCorrectResponse = Response(
         requestOptions: requestOptions,
         statusCode: HttpStatus.internalServerError,
@@ -39,7 +39,7 @@ void main() {
 
   test('GIVEN correct server response WHEN server respond http status 200 THEN return correct JSON', () async {
     MockDio dio = MockDio();
-    MedicalSpecialtyDataSource dataSource = MedicalSpecialtyDataSource(dio);
+    IMedicalSpecialtyRemoteDataSource dataSource = MedicalSpecialtyRemoteDataSource(dio);
     final mockCorrectResponse = Response(
         requestOptions: requestOptions,
         statusCode: HttpStatus.ok,
@@ -56,7 +56,7 @@ void main() {
 
   test('GIVEN correct server response WHEN server respond http status 200 THEN  convert correctly Json list to Dart List', () async {
     MockDio dio = MockDio();
-    MedicalSpecialtyDataSource dataSource = MedicalSpecialtyDataSource(dio);
+    IMedicalSpecialtyRemoteDataSource dataSource = MedicalSpecialtyRemoteDataSource(dio);
     final mockCorrectResponse = Response(
         requestOptions: requestOptions,
         statusCode: HttpStatus.ok,
@@ -65,6 +65,7 @@ void main() {
     when(() => dio.get(any()))
         .thenAnswer((invocation) => Future(() => mockCorrectResponse));
     final response = await dataSource.getMedicalSpecialty();
-    expect(response, correctMockList);
+    expect(response, correctApiModel);
   });
+
 }
