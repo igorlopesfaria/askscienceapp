@@ -24,6 +24,7 @@ enum DSIcons {
   closeOctagon(name: 'ic_close_octagon'),
   email(name: 'ic_email'),
   empty(name: 'ic_empty'),
+  emptySearch(name: 'ic_empty_search'),
   error(name: 'ic_error'),
   info(name: 'ic_info'),
   information(name: 'ic_information'),

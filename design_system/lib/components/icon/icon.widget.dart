@@ -21,7 +21,7 @@ class DSIconWidget extends StatelessWidget {
 
     return Image(
       image: AssetImage(
-          iconStyle.correctPath(props.icon, props.size)
+          iconStyle.correctPath(props.icon, props.size),
       ),
       key: key,
     );

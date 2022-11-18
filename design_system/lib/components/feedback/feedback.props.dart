@@ -9,6 +9,7 @@ class DSFeedbackProps {
     required this.size,
     required this.type,
     this.buttonText,
+    this.onIconPressed,
     this.onButtonPressed,
   });
 
@@ -17,6 +18,7 @@ class DSFeedbackProps {
   final String description;
   final String? buttonText;
   final void Function()? onButtonPressed;
+  final void Function()? onIconPressed;
   final DSFeedbackSize size;
   final DSFeedbackType type;
 }

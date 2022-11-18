@@ -12,7 +12,8 @@ class DSIconStyle {
       extension = "_md.png";
     }
 
-    return "assets/icons/${icon.name}$extension";
+
+    return "packages/design_system/assets/icons/${icon.name}$extension";
   }
 
 }

@@ -82,7 +82,7 @@ class DSFeedbackStyle {
       case DSFeedbackType.reload:
         return DSIcons.reload;
       case DSFeedbackType.empty:
-        return DSIcons.reload;
+        return DSIcons.emptySearch;
     }
   }
 }

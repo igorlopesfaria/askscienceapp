@@ -63,6 +63,7 @@ class DSTextStyle {
             fontSize: token.text.paragraph2.fontSize,
             fontWeight: token.text.paragraph2.fontWeight
         );
+
       case DSTypographyStyleType.label:
         return TextStyle(
             fontFamily: token.text.label.fontFamily,

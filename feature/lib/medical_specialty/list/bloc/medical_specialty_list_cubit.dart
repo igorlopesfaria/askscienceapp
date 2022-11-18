@@ -17,13 +17,13 @@ class MedicalSpecialtyListCubit extends Cubit<MedicalSpecialtyListState> {
   final GetMedicalSpecialtyListUseCase getMedicalListUseCase;
 
   final MedicalSpecialtyFeedbackUIModel emptyState = const MedicalSpecialtyFeedbackUIModel(
-    title: "Sem especialidades cadastradas",
-    description: "Não temos ainda nenhuma especialidade médica cadastrada. Tente novamente mais tarde.",
+    title: "Pesquisa não encontrada.",
+    description: "Não existe especialidade médica cadastrada no momento. Tente novamente mais tarde.",
   );
 
   final MedicalSpecialtyFeedbackUIModel errorState = const MedicalSpecialtyFeedbackUIModel(
-      title: "Não foi possível carregar a página",
-      description: "Verifique sua conexão e toque no ícone para tentar novamente carregar a lista de especialidades médicas."
+      title: "Problemas para carregar a tela",
+      description: "Verifique sua conexão e clique no ícone acima para tentar novamente.",
   );
 
   void getMedicalSpecialtyList() async {

@@ -1,4 +1,6 @@
 
+import 'package:mix/mix.dart';
+
 import '../../components/button/button.dart';
 import '../../components/icon/icon.widget.dart';
 import '../../components/text/text.dart';
@@ -17,6 +19,7 @@ class DSFeedbackWidget extends StatelessWidget {
     DSFeedbackSize size = DSFeedbackSize.md,
     DSFeedbackType type = DSFeedbackType.error,
     String? buttonText,
+    void Function()? onIconPressed,
     void Function()? onButtonPressed,
   }) : props = DSFeedbackProps(
       image: image,
@@ -25,6 +28,7 @@ class DSFeedbackWidget extends StatelessWidget {
       type: type,
       size: size,
       buttonText: buttonText,
+      onIconPressed: onIconPressed,
       onButtonPressed: onButtonPressed
   );
 
@@ -41,7 +45,15 @@ class DSFeedbackWidget extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              DSIconWidget(icon: feedbackStyle.getIconByType(props.type), size: feedbackStyle.getIconBySize(props.size),),
+              Pressable(
+                onPressed: ()  {
+                  props.onIconPressed?.call();
+                },
+                child: Box( child:DSIconWidget(
+                  icon: feedbackStyle.getIconByType(props.type),
+                  size: feedbackStyle.getIconBySize(props.size)
+                )),
+              ),
               Padding(padding: EdgeInsets.only(top: feedbackStyle.spacingVerticalIconSize(props.size))),
               DSTextWidget(
                   text: props.title,
@@ -56,7 +68,9 @@ class DSFeedbackWidget extends StatelessWidget {
                 if (props.buttonText != null) ...[
                   Padding(padding: EdgeInsets.only(top: feedbackStyle.spacingVerticalSize(props.size))),
                   DSButtonWidget(
-                    onPressed: () {},
+                    onPressed: () => {
+                      props.onButtonPressed?.call()
+                    },
                     label: props.buttonText!,
                     size: feedbackStyle.geButtonBySize(props.size),
                     type: DSButtonType.secondary,
