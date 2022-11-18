@@ -7,13 +7,11 @@ Comunidade de dúvidas e relatos médicos
 The **ask_science app** follows the
 [official architecture guidance](https://developer.android.com/topic/architecture) 
 
-![Arquitetura default do app:](/architecture_images/arch_app.png)
+![Arquitetura default do app:](/docs/images/arch_app.png)
 
 # Modularization
 
-The **ask_science app** app has been fully modularized and you can find the detailed guidance and
-description of the modularization strategy used in
-[modularization learning journey](docs/ModularizationLearningJourney.md).
+The **ask_science app** app has been fully modularized:
 
 **Scalability** - In a tightly coupled codebase, a single change can trigger a cascade of
 alterations. A properly modularized project will embrace
