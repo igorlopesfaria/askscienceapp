@@ -11,14 +11,11 @@ class MedicalSpecialtyDataSource {
 
   MedicalSpecialtyDataSource(this._dio);
 
-  Future<List<MedicalSpecialtyApiModel>> getMedicalSpecialities() async {
-
+  Future<MedicalSpecialtyApiModel> getMedicalSpecialities() async {
     try {
-      final response = await _dio.get("${_baseUrl}list");
-
-      return (response.data as List)
-          .map((e) => MedicalSpecialtyApiModel.fromJson(e))
-          .toList();
+      return MedicalSpecialtyApiModel.fromJson(
+          (await _dio.get("${_baseUrl}list")).data
+      );
     } catch (e) {
       rethrow;
     }

@@ -1,3 +1,4 @@
+import 'package:data/medical_specialty/model/api/medical_specialty_api_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:model/data/medical_specialty.dart';
 
@@ -11,9 +12,7 @@ class MedicalSpecialtyRepository {
 
   MedicalSpecialtyRepository(this._dataSource);
 
-  Future<List<MedicalSpecialty>> getMedicalSpecialities() async {
-    return (await _dataSource.getMedicalSpecialities())
-        .map((itemResponse) => itemResponse.mapModel)
-        .toList();
-  }
+  Future<List<MedicalSpecialty>> getMedicalSpecialities() async =>
+      (await _dataSource.getMedicalSpecialities())
+         .data.map((itemResponse) => itemResponse.mapModel).toList();
 }
