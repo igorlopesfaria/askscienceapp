@@ -13,6 +13,6 @@ class MedicalSpecialtyRepository {
   MedicalSpecialtyRepository(this._dataSource);
 
   Future<List<MedicalSpecialty>> getMedicalSpecialities() async =>
-      (await _dataSource.getMedicalSpecialities())
+      (await _dataSource.getMedicalSpecialty())
          .data.map((itemResponse) => itemResponse.mapModel).toList();
 }

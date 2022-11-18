@@ -1,3 +1,5 @@
+import 'package:commons/exception/exception.dart';
+
 import '../model/api/medical_specialty_api_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
@@ -11,13 +13,13 @@ class MedicalSpecialtyDataSource {
 
   MedicalSpecialtyDataSource(this._dio);
 
-  Future<MedicalSpecialtyApiModel> getMedicalSpecialities() async {
+  Future<MedicalSpecialtyApiModel> getMedicalSpecialty() async {
     try {
       return MedicalSpecialtyApiModel.fromJson(
           (await _dio.get("${_baseUrl}list")).data
       );
     } catch (e) {
-      rethrow;
+      throw ServerException("There is an exception on datasource layer. MedicalSpecialtyDataSource ${e.toString()}");
     }
   }
 }
