@@ -12,6 +12,8 @@ dependencies:
     path: commons
   data:
     path: data
+  feature:
+    path: feature
   design_system:
     path: design_system
   injectable: ^1.5.3

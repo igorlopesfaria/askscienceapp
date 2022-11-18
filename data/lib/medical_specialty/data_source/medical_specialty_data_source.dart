@@ -1,8 +1,7 @@
 import 'package:commons/exception/exception.dart';
-
-import '../model/api/medical_specialty_api_model.dart';
-import 'package:injectable/injectable.dart';
+import 'package:data/medical_specialty/model/api/medical_specialty_api_model.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class IMedicalSpecialtyRemoteDataSource {
   Future<MedicalSpecialtyApiModel> getMedicalSpecialty();

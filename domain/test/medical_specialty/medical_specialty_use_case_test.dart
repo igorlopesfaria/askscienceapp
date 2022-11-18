@@ -20,7 +20,8 @@ void main() {
     listFilteredUseCase = GetMedicalSpecialtyListFilteredUseCase();
   });
 
-  test('should return list of data when the call to remote data source is successful',() async {
+  test('GIVEN '
+      'should return list of data when the call to remote data source is successful',() async {
 
     when(() => mockRepository.getMedicalSpecialities())
         .thenAnswer((_) async => correctModel);
