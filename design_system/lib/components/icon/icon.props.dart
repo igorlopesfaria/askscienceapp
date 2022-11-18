@@ -19,6 +19,7 @@ enum DSIcons {
   await(name: 'ic_await'),
   dragHandle(name: 'ic_drag_handle'),
   checkCircle(name: 'ic_check_circle'),
+  chevronLeftPrimary(name: 'ic_chevron_left_primary'),
   close(name: 'ic_close'),
   closeOctagon(name: 'ic_close_octagon'),
   email(name: 'ic_email'),

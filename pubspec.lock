@@ -219,7 +219,7 @@ packages:
     source: hosted
     version: "4.0.6"
   domain:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: domain
       relative: true
@@ -275,7 +275,7 @@ packages:
     source: hosted
     version: "0.5.1+5"
   firebase_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
@@ -295,6 +295,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  firebase_crashlytics:
+    dependency: "direct main"
+    description:
+      name: firebase_crashlytics
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.6"
+  firebase_crashlytics_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_crashlytics_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.3.7"
   firebase_remote_config:
     dependency: "direct main"
     description:
@@ -500,7 +514,7 @@ packages:
     source: hosted
     version: "0.3.0"
   model:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: model
       relative: true

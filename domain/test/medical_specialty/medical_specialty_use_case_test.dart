@@ -10,8 +10,8 @@ class MockRepository extends Mock implements IMedicalSpecialtyRepository {}
 
 void main() {
 
-  late IGetMedicalSpecialtyListUseCase listUseCase;
-  late IGetMedicalSpecialtyListFilteredUseCase listFilteredUseCase;
+  late GetMedicalSpecialtyListUseCase listUseCase;
+  late GetMedicalSpecialtyListFilteredUseCase listFilteredUseCase;
   late MockRepository mockRepository;
 
   setUp(() {

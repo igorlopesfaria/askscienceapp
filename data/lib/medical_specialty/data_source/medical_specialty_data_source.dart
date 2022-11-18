@@ -1,4 +1,5 @@
 import 'package:commons/exception/exception.dart';
+import 'package:commons/report/reporter.dart';
 import 'package:data/medical_specialty/model/api/medical_specialty_api_model.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -13,8 +14,9 @@ class MedicalSpecialtyRemoteDataSource implements IMedicalSpecialtyRemoteDataSou
   final _baseUrl = "https://askscience.free.beeceptor.com/";
 
   final Dio _dio;
+  final IReporter _reporter;
 
-  MedicalSpecialtyRemoteDataSource(this._dio);
+  MedicalSpecialtyRemoteDataSource(this._dio, this._reporter);
 
   @override
   Future<MedicalSpecialtyApiModel> getMedicalSpecialty() async {
@@ -22,8 +24,10 @@ class MedicalSpecialtyRemoteDataSource implements IMedicalSpecialtyRemoteDataSou
       return MedicalSpecialtyApiModel.fromJson(
           (await _dio.get("${_baseUrl}list")).data
       );
-    } catch (e) {
-      throw ServerException("There is an exception on datasource layer. MedicalSpecialtyDataSource ${e.toString()}");
+    } catch (e, stacktrace) {
+      String cause = "There is an exception on datasource layer. MedicalSpecialtyDataSource ${e.toString()}";
+      _reporter.recordCustomError(e, stacktrace, cause);
+      throw DataException(cause);
     }
   }
 }
