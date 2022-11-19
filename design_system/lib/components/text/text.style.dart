@@ -51,6 +51,12 @@ class DSTextStyle {
             fontSize: token.text.heading7.fontSize,
             fontWeight: token.text.heading7.fontWeight
         );
+      case DSTypographyStyleType.paragraph:
+        return TextStyle(
+            fontFamily: token.text.paragraph.fontFamily,
+            fontSize: token.text.paragraph.fontSize,
+            fontWeight: token.text.paragraph.fontWeight
+        );
       case DSTypographyStyleType.paragraph1:
         return TextStyle(
             fontFamily: token.text.paragraph1.fontFamily,

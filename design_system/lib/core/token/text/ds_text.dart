@@ -27,6 +27,9 @@ class DSText implements TextBase{
   TextCharacteristicBase heading7 = DSTextHeading7();
 
   @override
+  TextCharacteristicBase paragraph = DSTextParagraph();
+
+  @override
   TextCharacteristicBase paragraph1 = DSTextParagraph1();
 
   @override
@@ -204,6 +207,29 @@ class DSTextHeading7 implements TextCharacteristicBase {
 
   @override
   late FontWeight fontWeight = fontBase.weight.medium;
+}
+class DSTextParagraph implements TextCharacteristicBase {
+
+  DSTextParagraph({
+    double? fontSize,
+    String? fontFamily,
+    FontWeight? fontWeight,
+  }) {
+    this.fontSize = fontSize ?? this.fontSize;
+    this.fontFamily = fontFamily ?? this.fontFamily;
+    this.fontWeight = fontWeight ?? this.fontWeight;
+  }
+
+  FontTokenBase fontBase = DSFont();
+
+  @override
+  late String fontFamily = fontBase.family.base;
+
+  @override
+  late double fontSize = fontBase.size.xs;
+
+  @override
+  late FontWeight fontWeight = fontBase.weight.regular;
 }
 
 class DSTextParagraph1 implements TextCharacteristicBase {

@@ -25,6 +25,7 @@ enum DSTypographyStyleType {
   heading5,
   heading6,
   heading7,
+  paragraph,
   paragraph1,
   paragraph2,
   label;
@@ -45,6 +46,8 @@ enum DSTypographyStyleType {
         return Variant('heading6');
       case heading7:
         return Variant('heading7');
+      case paragraph:
+        return Variant('paragraph');
       case paragraph1:
         return Variant('paragraph1');
       case paragraph2:
