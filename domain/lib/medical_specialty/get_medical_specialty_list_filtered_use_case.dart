@@ -7,6 +7,6 @@ class GetMedicalSpecialtyListFilteredUseCase {
   GetMedicalSpecialtyListFilteredUseCase();
 
   Future<List<MedicalSpecialty>> invoke(String filter, List<MedicalSpecialty> list) async {
-    return list.where((specialty) => specialty.name.contains(filter)).toList();
+    return list.where((specialty) => specialty.name.toUpperCase().contains(filter.toUpperCase())).toList();
   }
 }

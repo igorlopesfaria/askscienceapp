@@ -1,12 +1,14 @@
+import 'package:design_system/components/feedback/feedback.dart';
 import 'package:design_system/components/icon/icon.dart';
 import 'package:design_system/components/text/text.dart';
 import 'package:design_system/core/token/token.dart';
 import 'package:feature/di/feature_module.dart';
 import 'package:feature/medical_specialty/list/bloc/medical_specialty_list_cubit.dart';
-import 'package:design_system/components/feedback/feedback.dart';
+import 'package:feature/medical_specialty/list/pages/loaded/medical_specialty_list_widget.dart';
+import 'package:feature/medical_specialty/list/pages/loading/medical_specialty_cell_loading_widget.dart';
+import 'package:feature/medical_specialty/list/pages/loading/medical_specialty_list_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MedicalSpecialtyListPageWidget extends StatefulWidget {
@@ -16,10 +18,8 @@ class MedicalSpecialtyListPageWidget extends StatefulWidget {
   State<StatefulWidget> createState() => _MedicalSpecialtyListPageState();
 }
 
-
 class _MedicalSpecialtyListPageState
     extends State<MedicalSpecialtyListPageWidget> {
-
   DSToken token = DSToken();
 
   @override
@@ -27,12 +27,12 @@ class _MedicalSpecialtyListPageState
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        colorScheme: ThemeData().colorScheme.copyWith(
+          primary: token.color.primary.normal,
+        ),
+        primaryColor: token.color.primary.normal,
         appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(color: Colors.black),
-          color: Colors.deepPurpleAccent,
-          foregroundColor: Colors.black,
-          systemOverlayStyle: SystemUiOverlayStyle( //<-- SEE HERE
-            // Status bar color
+          systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.white,
             statusBarIconBrightness: Brightness.dark,
             statusBarBrightness: Brightness.light,
@@ -42,11 +42,10 @@ class _MedicalSpecialtyListPageState
       home: Scaffold(
           backgroundColor: token.color.light.pure,
           appBar: AppBar(
-              primary: true, //<-- For iOS SEE HERE (dark icons)
+              primary: true,
               leading: IconButton(
                   icon: DSIconWidget(icon: DSIcons.chevronLeftPrimary),
-                  onPressed: () => Navigator.of(context).pop()
-              ),
+                  onPressed: () => Navigator.of(context).pop()),
               backgroundColor: token.color.light.pure,
               title: DSTextWidget(
                 text: "Especialidade",
@@ -58,9 +57,7 @@ class _MedicalSpecialtyListPageState
           body: Center(
             child: BlocProvider<MedicalSpecialtyListCubit>(
               create: (context) => getIt<MedicalSpecialtyListCubit>(),
-              child: BlocBuilder<
-                  MedicalSpecialtyListCubit,
-                  MedicalSpecialtyListState>(
+              child: BlocBuilder<MedicalSpecialtyListCubit, MedicalSpecialtyListState>(
                 builder: (context, state) {
                   if (state is MedicalSpecialtyListLoadedState) {
                     return _loadedState(context, state);
@@ -78,16 +75,15 @@ class _MedicalSpecialtyListPageState
     );
   }
 
-  Widget _loadingState() =>
-      const Text("Loading"); //const MedicalSpecialtyLoadingPage();
+  Widget _loadingState() => const MedicalSpecialtyListLoading();
 
-  Widget _loadedState(BuildContext context,
-      MedicalSpecialtyListLoadedState state) => const Text("Loaded");
+  Widget _loadedState(BuildContext context, MedicalSpecialtyListLoadedState state) =>
+      MedicalSpecialtyListWidget(
+        listMedicalSpecialty: state.listMedicalSpecialty,
+      );
 
-  // MedicalSpecialtyLoadedWidget(orders: state.orders);
-
-  Widget _errorState(BuildContext context,
-      MedicalSpecialtyListErrorState state) =>
+  Widget _errorState(
+          BuildContext context, MedicalSpecialtyListErrorState state) =>
       Column(
         children: [
           Padding(padding: EdgeInsets.only(top: token.spacing.md)),
@@ -98,25 +94,18 @@ class _MedicalSpecialtyListPageState
               onIconPressed: () {
                 context.read<MedicalSpecialtyListCubit>()
                     .getMedicalSpecialtyList();
-              }
-          )
+              })
         ],
       );
 
-  Widget _emptyState(MedicalSpecialtyListEmptyState state) =>
-      Column(
+  Widget _emptyState(MedicalSpecialtyListEmptyState state) => Column(
         children: [
           Padding(padding: EdgeInsets.only(top: token.spacing.md)),
           DSFeedbackWidget(
               title: state.feedbackEmptyUIModel.title,
               description: state.feedbackEmptyUIModel.description,
-              type: DSFeedbackType.empty,
-              onIconPressed: () {
-                context.read<MedicalSpecialtyListCubit>()
-                    .getMedicalSpecialtyList();
-              }
+              type: DSFeedbackType.empty
           )
         ],
       );
 }
-

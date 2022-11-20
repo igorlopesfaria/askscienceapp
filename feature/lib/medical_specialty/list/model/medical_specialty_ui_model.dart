@@ -28,3 +28,13 @@ extension MedicalSpecialtyExtensions on MedicalSpecialty {
         isSelected: false);
     }
 }
+
+extension MedicalSpecialtyItemUIModelExtensions on MedicalSpecialtyItemUIModel {
+
+  MedicalSpecialty get mapModel {
+    return MedicalSpecialty(
+        id: id,
+        name: name);
+  }
+}
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mix/mix.dart';
+import '../variants.dart' as ds_variants;
 
 class DSTextFieldProps {
 
@@ -10,7 +11,9 @@ class DSTextFieldProps {
     this.feedbackType,
     this.feedbackText,
     this.border,
-    this.icon
+    required this.size,
+    this.icon,
+    this. onTextChanged
   });
 
   final String? label;
@@ -19,7 +22,9 @@ class DSTextFieldProps {
   final DSTextFieldFeedbackType? feedbackType;
   final String? feedbackText;
   final DSTextFieldBorderProps? border;
+  final DSTextFieldSize size;
   final Icon? icon;
+  final Function? onTextChanged;
 }
 
 class DSTextFieldBorderProps {
@@ -34,6 +39,7 @@ class DSTextFieldBorderProps {
 enum DSTextFieldType {
   normal,
   search,
+  password,
   select;
 
   Variant get variant {
@@ -42,6 +48,8 @@ enum DSTextFieldType {
         return Variant('normal');
       case search:
         return Variant('search');
+      case password:
+        return Variant('pasword');
       case select:
         return Variant('select');
     }
@@ -57,6 +65,24 @@ enum DSTextFieldFeedbackType {
         return Variant('error');
       case success:
         return Variant('success');
+    }
+  }
+
+}
+
+enum DSTextFieldSize {
+  sm,
+  md,
+  lg;
+
+  Variant get variant {
+    switch (this) {
+      case sm:
+        return ds_variants.small;
+      case md:
+        return ds_variants.medium;
+      case lg:
+        return ds_variants.large;
     }
   }
 

@@ -17,14 +17,12 @@ class BorderSizeTokenBase {
     required this.thin,
     required this.thick,
     required this.thicker,
-    required this.radio
   });
 
   final double heightDefault;
   final double thin;
   final double thick;
   final double thicker;
-  final double radio;
 }
 
 class BorderRadiusTokenBase {
@@ -35,7 +33,6 @@ class BorderRadiusTokenBase {
     required this.md,
     required this.lg,
     required this.pill,
-    required this.circular,
   });
 
   final double radiusDefault;
@@ -43,5 +40,4 @@ class BorderRadiusTokenBase {
   final double md;
   final double lg;
   final double pill;
-  final double circular;
 }

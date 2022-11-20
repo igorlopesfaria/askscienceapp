@@ -13,6 +13,8 @@ dependencies:
     path: ../design_system
   domain:
     path: ../domain
+  commons:
+    path: ../commons
   model:
     path: ../model
   intl: 0.17.0
@@ -20,6 +22,7 @@ dependencies:
   get_it: ^7.2.0
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -22,14 +22,12 @@ class DSBorderSizeToken implements BorderSizeTokenBase {
     double? heightDefault,
     double? thin,
     double? thick,
-    double? thicker,
-    double? radio,
+    double? thicker
   }) {
     this.heightDefault = heightDefault ?? this.heightDefault;
     this.thin = thin ?? this.thin;
     this.thick = thick ?? this.thick;
     this.thicker = thicker ?? this.thicker;
-    this.radio = radio ?? this.radio;
   }
 
   @override
@@ -43,10 +41,6 @@ class DSBorderSizeToken implements BorderSizeTokenBase {
 
   @override
   double thicker = 4;
-
-  @override
-  double radio = 8;
-
 }
 
 class DSBorderRadiusToken implements BorderRadiusTokenBase {
@@ -56,14 +50,12 @@ class DSBorderRadiusToken implements BorderRadiusTokenBase {
     double? md,
     double? lg,
     double? pill,
-    double? circular,
   }) {
     this.radiusDefault = radiusDefault ?? this.radiusDefault;
     this.sm = sm ?? this.sm;
     this.md = md ?? this.md;
     this.lg = lg ?? this.lg;
     this.pill = pill ?? this.pill;
-    this.circular = circular ?? this.circular;
   }
 
   @override
@@ -80,7 +72,4 @@ class DSBorderRadiusToken implements BorderRadiusTokenBase {
 
   @override
   double pill = 500;
-
-  @override
-  double circular = 500;
 }

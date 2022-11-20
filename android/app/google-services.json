@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "667858514596",
+    "project_id": "askscience-86155",
+    "storage_bucket": "askscience-86155.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667858514596:android:623789fd1b0ad4a949ac31",
+        "android_client_info": {
+          "package_name": "br.com.askscience.ask_science"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667858514596-44od3k6nsndfhvonnsm1cp4diumd933j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBykgjZOhMhml0sLyt3DySk2psH-qNtw_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667858514596-44od3k6nsndfhvonnsm1cp4diumd933j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "667858514596-ibsls7hs1qe9oudt7pkm3r5pkv0lb8ik.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.askscience.askScience"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

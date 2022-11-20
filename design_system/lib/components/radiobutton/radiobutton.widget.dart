@@ -13,12 +13,14 @@ class DSRadioButton<T> extends StatelessWidget {
     required T value,
     required T? groupValue,
     ValueChanged<T?>? onChanged,
+    DSRadioButtonSize size = DSRadioButtonSize.md,
     String label = '',
     final bool toggleable = false,
   })  : props = DSRadioButtonProps<T>(
     value: value,
     onChanged: onChanged,
     label: label,
+    size: size,
     groupValue: groupValue,
     toggleable: toggleable,
   );
@@ -29,8 +31,8 @@ class DSRadioButton<T> extends StatelessWidget {
   bool get toggleable => props.toggleable;
 
   Mix<Attribute> _applyVariants(Mix<Attribute> mix) {
-    return mix.withVariant(props.selected ? active : inactive)
-      .withMaybeVariant(props.onChanged == null ? disabled : null);
+    return mix.withVariants([props.selected ? active : inactive, props.size.variant])
+        .withMaybeVariant(props.onChanged == null ? disabled : null);
   }
 
   Mix<Attribute> labelPaddingMix(DSRadioButtonStyle style) {

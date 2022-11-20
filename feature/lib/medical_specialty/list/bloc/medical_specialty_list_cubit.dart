@@ -39,7 +39,28 @@ class MedicalSpecialtyListCubit extends Cubit<MedicalSpecialtyListState> {
         emit(MedicalSpecialtyListEmptyState(emptyState));
       }
     } catch (e) {
-      emit(MedicalSpecialtyListErrorState(errorState));
+      // emit(MedicalSpecialtyListErrorState(errorState));
+      emit(MedicalSpecialtyListLoadedState(listMock));
     }
   }
+
+  List<MedicalSpecialtyItemUIModel> get listMock =>[
+    const MedicalSpecialtyItemUIModel(id: 1, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 2, name: "Anestesiologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 3, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 4, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 5, name: "Anestesiologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 6, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 7, name: "Anestesiologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 8, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 9, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 10, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 11, name: "Anestesiologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 12, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 13, name: "Anestesiologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 14, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 15, name: "Anestesiologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 16, name: "Alergologia", isSelected: false),
+    const MedicalSpecialtyItemUIModel(id: 17, name: "Anestesiologia", isSelected: false),
+  ];
 }
