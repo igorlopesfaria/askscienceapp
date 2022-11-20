@@ -20,6 +20,9 @@ class MedicalSpecialtyListWidget extends StatefulWidget {
 
 class _MedicalSpecialtyListState extends State<MedicalSpecialtyListWidget> {
   MedicalSpecialtyItemUIModel? uiModelSelected;
+
+  TextEditingController textEditingController = TextEditingController();
+  bool showSuffix = false;
   DSToken token = DSToken();
 
   late BuildContext providerContext;
@@ -34,7 +37,9 @@ class _MedicalSpecialtyListState extends State<MedicalSpecialtyListWidget> {
             child: DSTextFieldWidget(
               hint: "Pesquisar",
               size: DSTextFieldSize.sm,
-              onTextChanged: cleanOrFilterByText
+              onTextChanged: cleanOrFilterByText,
+              textEditingController: textEditingController,
+              showSuffixIcon: showSuffix,
             ),
           ),
           buildProvider(context)
@@ -98,6 +103,14 @@ class _MedicalSpecialtyListState extends State<MedicalSpecialtyListWidget> {
           description: state.feedbackEmptyUIModel.description,
           type: DSFeedbackType.empty,
           buttonText: state.feedbackEmptyUIModel.buttonText,
+          onButtonPressed: ()  {
+            providerContext.read<MedicalSpecialtyListFilteredCubit>()
+                .cleanFilter();
+            setState(() {
+              textEditingController.clear();
+              showSuffix = false;
+            });
+         },
       )
     ],
   );
@@ -111,6 +124,16 @@ class _MedicalSpecialtyListState extends State<MedicalSpecialtyListWidget> {
     } else {
       providerContext.read<MedicalSpecialtyListFilteredCubit>()
           .cleanFilter();
+      }
+    if(textFilter == "") {
+      setState(() {
+        textEditingController.clear();
+        showSuffix = false;
+      });
+    } else {
+      setState(() {
+        showSuffix = true;
+      });
     }
   }
 

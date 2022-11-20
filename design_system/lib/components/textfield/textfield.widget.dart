@@ -13,6 +13,8 @@ class DSTextFieldWidget extends StatelessWidget {
       String? feedbackText,
       DSTextFieldSize size = DSTextFieldSize.md,
       Function? onTextChanged,
+      TextEditingController? textEditingController,
+      bool showSuffixIcon = false,
       Icon? icon})
       : props = DSTextFieldProps(
           label: label,
@@ -22,7 +24,9 @@ class DSTextFieldWidget extends StatelessWidget {
           feedbackText: feedbackText,
           size: size,
           icon: icon,
-          onTextChanged: onTextChanged
+          textEditingController: textEditingController,
+          onTextChanged: onTextChanged,
+          showSuffixIcon:showSuffixIcon
         );
   final DSTextFieldProps props;
   final DSToken token = DSToken();
@@ -51,13 +55,15 @@ class DSTextFieldWidget extends StatelessWidget {
           onChanged: (text) {
             props.onTextChanged?.call(text);
           },
+          controller: props.textEditingController,
           decoration: InputDecoration(
             filled: true,
             fillColor: token.color.light.one,
             prefixIcon: const Icon(Icons.search),
-            suffixIcon: IconButton(
-              onPressed: () => props.onTextChanged?.call(""),
-              icon: const Icon(Icons.clear),
+            suffixIcon: (!props.showSuffixIcon)
+                ? null :IconButton(
+                  onPressed: () => props.onTextChanged?.call(""),
+                  icon: const Icon(Icons.clear),
             ),
             hintText: props.hint,
             hintStyle: TextStyle(

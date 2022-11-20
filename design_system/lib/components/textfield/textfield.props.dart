@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mix/mix.dart';
-import '../variants.dart' as ds_variants;
+import 'package:design_system/components/variants.dart' as ds_variants;
 
 class DSTextFieldProps {
 
@@ -13,6 +13,8 @@ class DSTextFieldProps {
     this.border,
     required this.size,
     this.icon,
+    this.textEditingController,
+    required this.showSuffixIcon,
     this. onTextChanged
   });
 
@@ -24,7 +26,9 @@ class DSTextFieldProps {
   final DSTextFieldBorderProps? border;
   final DSTextFieldSize size;
   final Icon? icon;
+  final TextEditingController? textEditingController;
   final Function? onTextChanged;
+  final bool showSuffixIcon;
 }
 
 class DSTextFieldBorderProps {
