@@ -22,6 +22,8 @@ class _MedicalSpecialtyListPageState
     extends State<MedicalSpecialtyListPageWidget> {
   DSToken token = DSToken();
 
+  late MedicalSpecialtyListCubit cubit;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,7 +58,11 @@ class _MedicalSpecialtyListPageState
               centerTitle: true),
           body: Center(
             child: BlocProvider<MedicalSpecialtyListCubit>(
-              create: (context) => getIt<MedicalSpecialtyListCubit>(),
+              create: (context)  {
+                cubit = getIt<MedicalSpecialtyListCubit>();
+                cubit.getMedicalSpecialtyList();
+                return cubit;
+              },
               child: BlocBuilder<MedicalSpecialtyListCubit, MedicalSpecialtyListState>(
                 builder: (context, state) {
                   if (state is MedicalSpecialtyListLoadedState) {
@@ -92,8 +98,7 @@ class _MedicalSpecialtyListPageState
               description: state.feedbackErrorUIModel.description,
               type: DSFeedbackType.reload,
               onIconPressed: () {
-                context.read<MedicalSpecialtyListCubit>()
-                    .getMedicalSpecialtyList();
+                cubit.getMedicalSpecialtyList();
               })
         ],
       );

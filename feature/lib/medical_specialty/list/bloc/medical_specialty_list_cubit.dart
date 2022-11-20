@@ -1,3 +1,5 @@
+import 'package:commons/exception/exception.dart';
+import 'package:commons/report/reporter.dart';
 import 'package:domain/medical_specialty/get_medical_specialty_list_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:feature/medical_specialty/list/model/medical_specialty_feedback_ui_model.dart';
@@ -9,12 +11,11 @@ part 'medical_specialty_list_state.dart';
 
 @Injectable()
 class MedicalSpecialtyListCubit extends Cubit<MedicalSpecialtyListState> {
-  MedicalSpecialtyListCubit({required this.getMedicalListUseCase})
-      : super(MedicalSpecialtyListInitialState()) {
-    getMedicalSpecialtyList();
-  }
+  MedicalSpecialtyListCubit({required this.getMedicalListUseCase, required this.reporter})
+      : super(MedicalSpecialtyListInitialState());
 
   final GetMedicalSpecialtyListUseCase getMedicalListUseCase;
+  final IReporter reporter;
 
   final MedicalSpecialtyFeedbackUIModel emptyState = const MedicalSpecialtyFeedbackUIModel(
     title: "Pesquisa não encontrada.",
@@ -38,9 +39,14 @@ class MedicalSpecialtyListCubit extends Cubit<MedicalSpecialtyListState> {
       } else {
         emit(MedicalSpecialtyListEmptyState(emptyState));
       }
-    } catch (e) {
-      // emit(MedicalSpecialtyListErrorState(errorState));
-      emit(MedicalSpecialtyListLoadedState(listMock));
+    } catch (exception, stacktrace) {
+
+      if(exception != DataException) {
+        String cause = "There is an exception on feature layer. MedicalSpecialtyListCubit ${exception.toString()}";
+        reporter.recordCustomError(exception, stacktrace, cause);
+      }
+
+      emit(MedicalSpecialtyListErrorState(errorState));
     }
   }
 

@@ -21,7 +21,9 @@ dependencies:
   injectable: ^1.5.3
   get_it: ^7.2.0
   flutter_bloc: ^8.0.1
+  bloc_test: ^9.0.3
   equatable: ^2.0.3
+  mocktail: ^0.3.0
   shimmer: ^2.0.0
 
 dev_dependencies:
@@ -35,5 +37,5 @@ flutter:
   uses-material-design: true
   module:
     androidX: true
-    androidPackage: br.com.askscience.commons
-    iosBundleIdentifier: br.com.askscience.commons
+    androidPackage: br.com.askscience.feature
+    iosBundleIdentifier: br.com.askscience.feature

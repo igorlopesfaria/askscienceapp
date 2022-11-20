@@ -4,7 +4,7 @@ import 'package:domain/medical_specialty/get_medical_specialty_list_use_case.dar
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../test.shared.dart';
+import '../medical_specialty.shared.dart';
 
 class MockRepository extends Mock implements IMedicalSpecialtyRepository {}
 

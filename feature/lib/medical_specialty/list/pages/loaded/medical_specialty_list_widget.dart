@@ -25,7 +25,7 @@ class _MedicalSpecialtyListState extends State<MedicalSpecialtyListWidget> {
   bool showSuffix = false;
   DSToken token = DSToken();
 
-  late BuildContext providerContext;
+  late MedicalSpecialtyListFilteredCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +46,12 @@ class _MedicalSpecialtyListState extends State<MedicalSpecialtyListWidget> {
         ]);
   }
   Widget buildProvider(BuildContext context) => BlocProvider<MedicalSpecialtyListFilteredCubit>(
-    create: (_) => getIt<MedicalSpecialtyListFilteredCubit>(),
+    create: (_) {
+      cubit = getIt<MedicalSpecialtyListFilteredCubit>();
+      return cubit;
+    },
     child: BlocBuilder<MedicalSpecialtyListFilteredCubit, MedicalSpecialtyListFilteredState>(
       builder: (context, state) {
-        providerContext = context;
         if (state is MedicalSpecialtyListFilteredEmptyState) {
           return _emptyState(state);
         } else if (state is MedicalSpecialtyListFilteredErrorState) {
@@ -104,8 +106,7 @@ class _MedicalSpecialtyListState extends State<MedicalSpecialtyListWidget> {
           type: DSFeedbackType.empty,
           buttonText: state.feedbackEmptyUIModel.buttonText,
           onButtonPressed: ()  {
-            providerContext.read<MedicalSpecialtyListFilteredCubit>()
-                .cleanFilter();
+            cubit.cleanFilter();
             setState(() {
               textEditingController.clear();
               showSuffix = false;
@@ -118,13 +119,10 @@ class _MedicalSpecialtyListState extends State<MedicalSpecialtyListWidget> {
   void cleanOrFilterByText(String textFilter) {
 
     if(textFilter.length > 3) {
-      providerContext.read<MedicalSpecialtyListFilteredCubit>()
-          .getMedicalSpecialtyListFiltered(
-          textFilter, widget.listMedicalSpecialty);
+      cubit.getMedicalSpecialtyListFiltered(textFilter, widget.listMedicalSpecialty);
     } else {
-      providerContext.read<MedicalSpecialtyListFilteredCubit>()
-          .cleanFilter();
-      }
+      cubit.cleanFilter();
+    }
     if(textFilter == "") {
       setState(() {
         textEditingController.clear();
