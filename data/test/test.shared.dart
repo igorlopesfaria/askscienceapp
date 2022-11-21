@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:data/medical_specialty/model/api/medical_specialty_api_model.dart';
+import 'package:data/medical_specialty/model/api/response/medical_specialty_response_api_model.dart';
 import 'package:dio/dio.dart';
 import 'package:model/data/medical_specialty.dart';
 
@@ -27,10 +27,10 @@ final errorMockJson = {
   }
 };
 
-const correctApiModel = MedicalSpecialtyApiModel(data:  [
-  MedicalSpecialtyItemApiModel(id: 1, name: "Anestesiologia"),
-  MedicalSpecialtyItemApiModel(id: 2, name: "Alergologia"),
-  MedicalSpecialtyItemApiModel(id: 3, name: "Cardiologia")
+const correctApiModel = MedicalSpecialtyResponseApiModel(data:  [
+  MedicalSpecialtyItemResponseApiModel(id: 1, name: "Anestesiologia"),
+  MedicalSpecialtyItemResponseApiModel(id: 2, name: "Alergologia"),
+  MedicalSpecialtyItemResponseApiModel(id: 3, name: "Cardiologia")
 ]);
 
 const correctModel =  [

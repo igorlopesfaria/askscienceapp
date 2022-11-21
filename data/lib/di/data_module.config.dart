@@ -10,7 +10,7 @@ import 'package:dio/dio.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../medical_specialty/data_source/medical_specialty_data_source.dart'
+import '../medical_specialty/data_source/medical_specialty_api_data_source.dart'
     as _i3;
 import '../medical_specialty/medical_specialty_repository.dart'
     as _i6; // ignore_for_file: unnecessary_lambdas
@@ -27,13 +27,13 @@ _i1.GetIt $initDataGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.IMedicalSpecialtyRemoteDataSource>(
-      () => _i3.MedicalSpecialtyRemoteDataSource(
+  gh.factory<_i3.IMedicalSpecialtyApiDataSource>(
+      () => _i3.MedicalSpecialtyApiDataSource(
             get<_i4.Dio>(),
             get<_i5.IReporter>(),
           ));
   gh.factory<_i6.IMedicalSpecialtyRepository>(() =>
       _i6.MedicalSpecialtyRepository(
-          get<_i3.IMedicalSpecialtyRemoteDataSource>()));
+          get<_i3.IMedicalSpecialtyApiDataSource>()));
   return get;
 }

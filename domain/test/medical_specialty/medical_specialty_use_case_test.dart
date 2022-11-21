@@ -20,8 +20,7 @@ void main() {
     listFilteredUseCase = GetMedicalSpecialtyListFilteredUseCase();
   });
 
-  test('GIVEN '
-      'should return list of data when the call to remote data source is successful',() async {
+  test('GIVEN getMedicalSpecialtyList usecase called WHEN repository returns success THEN return the same list received',() async {
 
     when(() => mockRepository.getMedicalSpecialities())
         .thenAnswer((_) async => correctModel);
@@ -29,7 +28,7 @@ void main() {
     expect(result, correctModel);
   });
 
-  test('should return list filtered of data when the call to usecase is successful',() async {
+  test('GIVEN GetMedicalSpecialtyListFilteredUseCase usecase called WHEN coorrect params is passed THEN return the list filtered by text',() async {
 
     final resultUnique = await listFilteredUseCase.invoke("Cardiologia", correctModel);
     expect(resultUnique.length, 1);

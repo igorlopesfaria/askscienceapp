@@ -1,4 +1,4 @@
-import 'package:data/medical_specialty/data_source/medical_specialty_data_source.dart';
+import 'package:data/medical_specialty/data_source/medical_specialty_api_data_source.dart';
 import 'package:data/medical_specialty/model/medical_specialty_extension.dart';
 import 'package:injectable/injectable.dart';
 import 'package:model/data/medical_specialty.dart';
@@ -9,13 +9,13 @@ abstract class IMedicalSpecialtyRepository {
 
 @Injectable(as: IMedicalSpecialtyRepository)
 class MedicalSpecialtyRepository implements IMedicalSpecialtyRepository{
-  final IMedicalSpecialtyRemoteDataSource _dataSource;
+  final IMedicalSpecialtyApiDataSource _apiDataSource;
 
-  MedicalSpecialtyRepository(this._dataSource);
+  MedicalSpecialtyRepository(this._apiDataSource);
 
   @override
   Future<List<MedicalSpecialty>> getMedicalSpecialities() async =>
-      (await _dataSource.getMedicalSpecialty()).data.map(
+      (await _apiDataSource.getMedicalSpecialtyList()).data.map(
               (itemResponse) => itemResponse.mapModel
       ).toList();
 }
