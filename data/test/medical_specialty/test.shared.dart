@@ -4,6 +4,8 @@ import 'package:data/medical_specialty/model/api/response/medical_specialty_resp
 import 'package:dio/dio.dart';
 import 'package:model/data/medical_specialty.dart';
 
+import '../shared.dart';
+
 final correctMockJson = {
   "data" : [
     {
@@ -39,18 +41,7 @@ const correctModel =  [
   MedicalSpecialty(id: 3, name: "Cardiologia")
 ];
 
-const path = "https://jsonplaceholder.typicode.com/todos/1";
-final requestOptions = RequestOptions(path: path);
-
-final mockErrorResponse = Response(
-    requestOptions: requestOptions,
-    statusCode: HttpStatus.internalServerError,
-    data: errorMockJson);
-
 final mockCorrectResponse = Response(
     requestOptions: requestOptions,
     statusCode: HttpStatus.ok,
     data: correctMockJson);
-
-
-String fixture(String name) => File('test/json/$name').readAsStringSync();

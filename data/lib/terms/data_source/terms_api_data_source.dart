@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class ITermsApiDataSource {
-  Future<TermsResponseApiModel> getTermsAndConditions();
+  Future<TermsResponseApiModel> getTermsOfUsage();
   Future<TermsResponseApiModel> getPrivacyPolicy();
 }
 
@@ -20,28 +20,28 @@ class TermsApiDataSource implements ITermsApiDataSource {
   TermsApiDataSource(this._dio, this._reporter);
 
   @override
-  Future<TermsResponseApiModel> getTermsAndConditions() async{
+  Future<TermsResponseApiModel> getTermsOfUsage() async {
     try {
       return TermsResponseApiModel.fromJson(
-          (await _dio.get("$_baseUrl/terms/termsAndConditions")).data
+          (await _dio.get("$_baseUrl/terms/termsOfUsage")).data
       );
     } catch (e, stacktrace) {
-      String cause = "There is an exception on datasource layer. TermsApiDataSource getTermsAndConditions ${e.toString()}";
+      String cause = "There is an exception on api datasource layer. TermsApiDataSource getTermsOfUsage ${e.toString()}";
       _reporter.recordCustomError(e, stacktrace, cause);
-      throw DataException(cause);
+      throw DataApiException(cause);
     }
   }
 
   @override
-  Future<TermsResponseApiModel> getPrivacyPolicy() async{
+  Future<TermsResponseApiModel> getPrivacyPolicy() async {
     try {
       return TermsResponseApiModel.fromJson(
           (await _dio.get("$_baseUrl/terms/privacyPolicy")).data
       );
     } catch (e, stacktrace) {
-      String cause = "There is an exception on datasource layer. TermsApiDataSource getPrivacyPolicy ${e.toString()}";
+      String cause = "There is an exception on api datasource layer. TermsApiDataSource getPrivacyPolicy ${e.toString()}";
       _reporter.recordCustomError(e, stacktrace, cause);
-      throw DataException(cause);
+      throw DataApiException(cause);
     }
   }
 }

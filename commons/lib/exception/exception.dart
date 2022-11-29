@@ -3,7 +3,13 @@ class ServerException implements Exception {
   ServerException(this.cause);
 }
 
-class DataException implements Exception {
+class DataApiException implements Exception {
   String? cause;
-  DataException(this.cause);
+  DataApiException(this.cause);
 }
+
+class DataLocalException implements Exception {
+  String? cause;
+  DataLocalException(this.cause);
+}
+

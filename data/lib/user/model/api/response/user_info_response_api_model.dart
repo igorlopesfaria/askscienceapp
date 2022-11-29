@@ -1,4 +1,5 @@
-import 'package:data/user/model/api/response/user_registration_response_api_model.dart';
+import 'package:data/user/model/api/response/user_register_response_api_model.dart';
+import 'package:data/user/model/api/response/user_response_api_model.dart';
 import 'package:equatable/equatable.dart';
 
 class UserInfoResponseApiModel extends Equatable {

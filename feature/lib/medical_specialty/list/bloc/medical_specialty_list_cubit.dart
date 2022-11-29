@@ -41,7 +41,7 @@ class MedicalSpecialtyListCubit extends Cubit<MedicalSpecialtyListState> {
       }
     } catch (exception, stacktrace) {
 
-      if(exception != DataException) {
+      if(exception != DataApiException) {
         String cause = "There is an exception on feature layer. MedicalSpecialtyListCubit ${exception.toString()}";
         reporter.recordCustomError(exception, stacktrace, cause);
       }

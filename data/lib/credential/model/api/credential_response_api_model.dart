@@ -1,21 +1,22 @@
 import 'package:equatable/equatable.dart';
 
-class UserAuthenticationResponseApiModel extends Equatable {
-  const UserAuthenticationResponseApiModel({
+class CredentialResponseApiModel extends Equatable {
+  const CredentialResponseApiModel({
     required this.data
   });
 
-  final UserTokenResponseApiModel data;
+  final CredentialTokenResponseApiModel data;
 
-  factory UserAuthenticationResponseApiModel.fromJson(Map<String, dynamic> json) => UserAuthenticationResponseApiModel(
-      data: json["data"]
+  factory CredentialResponseApiModel.fromJson(Map<String, dynamic> json) => CredentialResponseApiModel(
+      data: CredentialTokenResponseApiModel.fromJson(json["data"])
   );
 
   @override
   List<Object> get props => [data];
 }
-class UserTokenResponseApiModel extends Equatable {
-  const UserTokenResponseApiModel({
+
+class CredentialTokenResponseApiModel extends Equatable {
+  const CredentialTokenResponseApiModel({
     required this.accessToken,
     required this.refreshToken,
     required this.tokenType,
@@ -29,7 +30,7 @@ class UserTokenResponseApiModel extends Equatable {
   final String expiresIn;
   final String scopes;
 
-  factory UserTokenResponseApiModel.fromJson(Map<String, dynamic> json) => UserTokenResponseApiModel(
+  factory CredentialTokenResponseApiModel.fromJson(Map<String, dynamic> json) => CredentialTokenResponseApiModel(
     accessToken: json["access_token"],
     refreshToken: json["refresh_token"],
     tokenType: json["token_type"],

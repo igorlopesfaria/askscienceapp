@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:model/data/medical_specialty.dart';
 
-class UserModel extends Equatable {
-  const UserModel({
+class User extends Equatable {
+  const User({
     required this.id,
     required this.name,
     required this.specialty,

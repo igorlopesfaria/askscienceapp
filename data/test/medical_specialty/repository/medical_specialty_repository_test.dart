@@ -7,6 +7,7 @@ import 'package:data/medical_specialty/model/api/response/medical_specialty_resp
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../shared.dart';
 import '../test.shared.dart';
 
 class MockRemoteDataSource extends Mock implements IMedicalSpecialtyApiDataSource {}

@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../shared.dart';
 import '../test.shared.dart';
 
 class MockDio extends Mock implements Dio {}
@@ -28,13 +29,13 @@ void main() {
   test('GIVEN any Exception on datasource WHEN call getMedicalSpecialty() THEN throw custom DataException', () async {
     when(() => dio.get(any())).thenThrow(TimeoutException);
     when(() => reporter.recordCustomError(any(), any(), any())).thenAnswer((_) => Future.value());
-    expect(() => (dataSource.getMedicalSpecialtyList()), throwsA(const TypeMatcher<DataException>()));
+    expect(() => (dataSource.getMedicalSpecialtyList()), throwsA(const TypeMatcher<DataApiException>()));
   });
 
   test('GIVEN Server error response WHEN call getMedicalSpecialty() THEN throw custom DataException', () async {
     when(() => dio.get(any())).thenAnswer((invocation) => Future(() => mockErrorResponse));
     when(() => reporter.recordCustomError(any(), any(), any())).thenAnswer((_) => Future.value());
-    expect(() => (dataSource.getMedicalSpecialtyList()), throwsA(const TypeMatcher<DataException>()));
+    expect(() => (dataSource.getMedicalSpecialtyList()), throwsA(const TypeMatcher<DataApiException>()));
   });
 
 

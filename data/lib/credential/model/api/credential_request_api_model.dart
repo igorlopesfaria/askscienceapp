@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class UserAuthenticationRequestApiModel extends Equatable {
-  const UserAuthenticationRequestApiModel({
+class CredentialRequestApiModel extends Equatable {
+  const CredentialRequestApiModel({
     required this.email,
     required this.password});
 
@@ -10,5 +10,11 @@ class UserAuthenticationRequestApiModel extends Equatable {
 
   @override
   List<Object?> get props => [email, password];
+
+  Map<String, dynamic> toJson() => {
+    'email': email,
+    'password': password,
+  };
+
 
 }

@@ -27,7 +27,7 @@ class MedicalSpecialtyApiDataSource implements IMedicalSpecialtyApiDataSource{
     } catch (e, stacktrace) {
       String cause = "There is an exception on datasource layer. MedicalSpecialtyDataSource getMedicalSpecialtyList ${e.toString()}";
       _reporter.recordCustomError(e, stacktrace, cause);
-      throw DataException(cause);
+      throw DataApiException(cause);
     }
   }
 }

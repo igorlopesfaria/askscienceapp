@@ -3,19 +3,17 @@ import 'dart:io';
 
 import 'package:commons/exception/exception.dart';
 import 'package:commons/report/reporter.dart';
-import 'package:data/user/model/api/request/user_authentication_request_api_model.dart';
 import 'package:data/user/model/api/request/user_registration_request_api_model.dart';
 import 'package:data/user/model/api/request/user_reset_password_request_api_model.dart';
-import 'package:data/user/model/api/response/user_authentication_response_api_model.dart';
-import 'package:data/user/model/api/response/user_registration_response_api_model.dart';
+import 'package:data/user/model/api/response/user_info_response_api_model.dart';
+import 'package:data/user/model/api/response/user_register_response_api_model.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class IUserApiDataSource {
-  Future<bool> resetPasswordByEmail(UserResetPasswordRequestApiModel param);
-  Future<UserTokenResponseApiModel> authenticate(UserAuthenticationRequestApiModel param);
-  Future<UserResponseApiModel> create(UserRegistrationRequestApiModel param);
-  Future<UserResponseApiModel> getInfo();
+  Future<bool> resetPasswordByEmail(UserResetPasswordRequestApiModel request);
+  Future<UserRegisterResponseApiModel> register(UserRegistrationRequestApiModel request);
+  Future<UserInfoResponseApiModel> getInfo();
 }
 
 @Injectable(as: IUserApiDataSource)
@@ -29,71 +27,54 @@ class UserApiDataSource implements IUserApiDataSource {
   UserApiDataSource(this._dio, this._reporter);
 
   @override
-  Future<bool> resetPasswordByEmail(UserResetPasswordRequestApiModel param) async {
+  Future<bool> resetPasswordByEmail(UserResetPasswordRequestApiModel request) async {
     try {
-      Response response = await _dio.post("$_baseUrl/accountRecoveries",  options: Options(headers: {
-        HttpHeaders.contentTypeHeader: "application/json",
+      Response response = await _dio.post("$_baseUrl/accountRecoveries",
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
       }),
-        data: jsonEncode(param),
+        data: jsonEncode(request),
       );
-
-      if (response.statusCode == HttpStatus.ok) {
+      if (response.statusCode == 200) {
         return true;
-      } else{
+      } else {
         return false;
       }
     } catch (e, stacktrace) {
-      String cause = "There is an exception on datasource layer. UserApiDataSource resetPasswordByEmail ${e.toString()}";
+      String cause = "There is an exception on api datasource layer. Class UserApiDataSource method getInfo ${e.toString()}";
       _reporter.recordCustomError(e, stacktrace, cause);
-      throw DataException(cause);
+      throw DataApiException(cause);
     }
   }
 
   @override
-  Future<UserTokenResponseApiModel> authenticate(UserAuthenticationRequestApiModel param) async {
-    try {
-      Response response = await _dio.post("$_baseUrl/tokens",
-        options: Options(headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-        }),
-        data: jsonEncode(param),
-      );
-
-      return UserTokenResponseApiModel.fromJson((response).data);
-    } catch (e, stacktrace) {
-      String cause = "There is an exception on datasource layer. UserApiDataSource authenticate ${e.toString()}";
-      _reporter.recordCustomError(e, stacktrace, cause);
-      throw DataException(cause);
-    }
-  }
-  @override
-  Future<UserResponseApiModel> getInfo() async {
+  Future<UserInfoResponseApiModel> getInfo() async {
     try {
       Response response = await _dio.get("$_baseUrl/me");
 
-      return UserResponseApiModel.fromJson((response).data);
+      return UserInfoResponseApiModel.fromJson(response.data);
     } catch (e, stacktrace) {
-      String cause = "There is an exception on datasource layer. UserApiDataSource getInfo ${e.toString()}";
+      String cause = "There is an exception on api datasource layer. Class UserApiDataSource method getInfo ${e.toString()}";
       _reporter.recordCustomError(e, stacktrace, cause);
-      throw DataException(cause);
+      throw DataApiException(cause);
     }
   }
 
   @override
-  Future<UserResponseApiModel> create(UserRegistrationRequestApiModel param) async {
+  Future<UserRegisterResponseApiModel> register(UserRegistrationRequestApiModel request) async {
     try {
       Response response = await _dio.post("$_baseUrl/tokens",
         options: Options(headers: {
           HttpHeaders.contentTypeHeader: "application/json",
         }),
-        data: jsonEncode(param),
+        data: jsonEncode(request)
       );
 
-      return UserResponseApiModel.fromJson((response).data);
+      return UserRegisterResponseApiModel.fromJson(response.data);
     } catch (e, stacktrace) {
-      String cause = "There is an exception on datasource layer. UserApiDataSource getInfo ${e.toString()}";
+      String cause = "There is an exception on api datasource layer. Class UserApiDataSource method create ${e.toString()}";
       _reporter.recordCustomError(e, stacktrace, cause);
-      throw DataException(cause);
+      throw DataApiException(cause);
     }
   }
 }

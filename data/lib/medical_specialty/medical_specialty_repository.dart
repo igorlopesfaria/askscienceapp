@@ -1,5 +1,5 @@
 import 'package:data/medical_specialty/data_source/medical_specialty_api_data_source.dart';
-import 'package:data/medical_specialty/model/medical_specialty_extension.dart';
+import 'package:data/medical_specialty/model/medical_specialty_mapper.dart';
 import 'package:injectable/injectable.dart';
 import 'package:model/data/medical_specialty.dart';
 
