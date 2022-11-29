@@ -1,22 +1,18 @@
-import 'dart:ui';
-
 import 'package:ask_science/firebase_options.dart';
-import 'package:design_system/components/bottomsheet/bottomsheet.dart';
-import 'package:design_system/core/token/token.dart';
-import 'package:feature/medical_specialty/list/pages/loaded/medical_specialty_cell_widget.dart';
 import 'package:feature/medical_specialty/list/pages/medical_specialty_list_page_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:feature/medical_specialty/list/model/medical_specialty_ui_model.dart';
 
 import '../di/injection.dart';
 
 void main() async {
-  await configureDependencies();
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  await configureDependencies();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

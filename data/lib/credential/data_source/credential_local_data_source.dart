@@ -15,19 +15,19 @@ abstract class ICredentialLocalDataSource {
 class CredentialLocalDataSource implements ICredentialLocalDataSource {
 
   final IReporter _reporter;
-  static const _credentialAccessToken = "accessToken";
-  static const _credentialRefreshToken = "'refreshToken'";
+  final SharedPreferences _prefs;
+  static const credentialAccessToken = "accessToken";
+  static const credentialRefreshToken = "refreshToken";
 
 
-  CredentialLocalDataSource(this._reporter);
+  CredentialLocalDataSource(this._prefs, this._reporter);
 
   @override
   Future<void> insert(CredentialTokenLocalModel tokenLocalModel) async {
     try {
-      final prefs = await SharedPreferences.getInstance();
 
-      await prefs.setString(_credentialAccessToken, tokenLocalModel.accessToken);
-      await prefs.setString(_credentialRefreshToken, tokenLocalModel.refreshToken);
+      await _prefs.setString(credentialAccessToken, tokenLocalModel.accessToken);
+      await _prefs.setString(credentialRefreshToken, tokenLocalModel.refreshToken);
 
     } catch (e, stacktrace) {
       String cause = "There is an exception on api datasource layer. Class CredentialLocalDataSource method insert ${e.toString()}";
@@ -39,11 +39,10 @@ class CredentialLocalDataSource implements ICredentialLocalDataSource {
   @override
   Future<CredentialTokenLocalModel> find() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
 
       return CredentialTokenLocalModel(
-          accessToken: prefs.getString(_credentialAccessToken) ?? "",
-          refreshToken: prefs.getString(_credentialRefreshToken) ?? "");
+          accessToken: _prefs.getString(credentialAccessToken) ?? "",
+          refreshToken: _prefs.getString(credentialRefreshToken) ?? "");
 
     } catch (e, stacktrace) {
       String cause = "There is an exception on local datasource layer. Class CredentialApiDataSource method rowCount ${e.toString()}";
@@ -55,10 +54,9 @@ class CredentialLocalDataSource implements ICredentialLocalDataSource {
   @override
   Future<void> delete() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
 
-      await prefs.remove(_credentialAccessToken);
-      await prefs.remove(_credentialRefreshToken);
+      await _prefs.remove(credentialAccessToken);
+      await _prefs.remove(credentialRefreshToken);
 
     } catch (e, stacktrace) {
       String cause = "There is an exception on local datasource layer. Class CredentialApiDataSource method authenticate ${e.toString()}";

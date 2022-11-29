@@ -21,8 +21,6 @@ class CredentialApiDataSource implements ICredentialApiDataSource {
   final IReporter _reporter;
 
   CredentialApiDataSource(this._dio, this._reporter);
-// options: Options(headers: {'Content-Type': 'application/json'}),
-  // data: request.toJson(),
 
   @override
   Future<CredentialResponseApiModel> authenticate(CredentialRequestApiModel request) async {
