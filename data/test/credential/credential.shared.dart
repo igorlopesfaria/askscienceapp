@@ -1,11 +1,17 @@
-
 import 'dart:io';
 
 import 'package:data/credential/model/api/credential_request_api_model.dart';
 import 'package:data/credential/model/local/credential_token_local_model.dart';
 import 'package:dio/dio.dart';
+import 'package:model/data/credential.dart';
 
 import '../shared.dart';
+
+
+const credential = Credential(
+    accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+    refreshToken: "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+);
 
 const credentialLocalModel = CredentialTokenLocalModel(
   accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",

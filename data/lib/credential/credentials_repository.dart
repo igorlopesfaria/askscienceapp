@@ -24,21 +24,25 @@ class CredentialRepository implements ICredentialRepository {
 
   @override
   Future<Credential> authenticate(String email, String password) async {
+    CredentialRequestApiModel requestModel = CredentialRequestApiModel(email: email, password: password);
 
-    CredentialTokenResponseApiModel tokenResponseApiModel = (await _apiDataSource.authenticate(
-        CredentialRequestApiModel(email: email, password: password)
-    )).data;
+    CredentialTokenResponseApiModel tokenResponseApiModel = (await _apiDataSource.authenticate(requestModel)).data;
+
     CredentialTokenLocalModel localModel= tokenResponseApiModel.mapLocalModel;
+
     await _localDataSource.insert(localModel);
+
     return localModel.mapModel;
   }
 
 
   @override
   Future<Credential> insertToken(String accessToken, String refreshToken) async {
-    await _localDataSource.insert(CredentialTokenLocalModel(accessToken: accessToken, refreshToken: refreshToken));
+    CredentialTokenLocalModel localModel = CredentialTokenLocalModel(accessToken: accessToken, refreshToken: refreshToken);
 
-    return Credential(accessToken: accessToken, refreshToken: refreshToken);
+    await _localDataSource.insert(localModel);
+
+    return localModel.mapModel;
   }
 
   @override

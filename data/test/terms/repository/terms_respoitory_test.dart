@@ -8,16 +8,16 @@ import 'package:mocktail/mocktail.dart';
 import '../../shared.dart';
 import '../terms.shared.dart';
 
-class MockRemoteDataSource extends Mock implements ITermsApiDataSource {}
+class MockApiDataSource extends Mock implements ITermsApiDataSource {}
 
 void main() {
 
   late ITermsRepository repository;
-  late MockRemoteDataSource mockRemoteDataSource;
+  late ITermsApiDataSource mockApiDataSource;
 
   setUp(() {
-    mockRemoteDataSource = MockRemoteDataSource();
-    repository = TermsRepository(mockRemoteDataSource);
+    mockApiDataSource = MockApiDataSource();
+    repository = TermsRepository(mockApiDataSource);
   });
 
   final termsOfUsageFromAPIDataSource = TermsResponseApiModel.fromJson(
@@ -30,7 +30,7 @@ void main() {
 
   test('should return domain term data WHEN the call to remote data source is successful',() async {
 
-    when(() => mockRemoteDataSource.getTermsOfUsage())
+    when(() => mockApiDataSource.getTermsOfUsage())
         .thenAnswer((_) async => termsOfUsageFromAPIDataSource);
     final result = await repository.getTermsOfUsage();
     expect(result, termsOfUsageCorrectModel);
@@ -38,7 +38,7 @@ void main() {
 
   test('should return domain term data WHEN the call to remote data source is successful',() async {
 
-    when(() => mockRemoteDataSource.getPrivacyPolicy())
+    when(() => mockApiDataSource.getPrivacyPolicy())
         .thenAnswer((_) async => privacyPolicyFromAPIDataSource);
     final result = await repository.getPrivacyPolicy();
     expect(result, privacyPolicyCorrectModel);
