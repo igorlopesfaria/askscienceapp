@@ -30,9 +30,7 @@ class CredentialApiDataSource implements ICredentialApiDataSource {
           options: Options()..headers = {'Content-Type': 'application/json'}
       ));
 
-      CredentialResponseApiModel apiModel =  CredentialResponseApiModel.fromJson(response.data);
-
-      return apiModel;
+      return  CredentialResponseApiModel.fromJson(response.data);
 
     } catch (e, stacktrace) {
       String cause = "There is an exception on api datasource layer. Class CredentialApiDataSource method authenticate ${e.toString()}";

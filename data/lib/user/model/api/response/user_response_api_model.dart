@@ -11,7 +11,7 @@ class UserResponseApiModel extends Equatable {
     required this.crm,
     required this.email,
     required this.verified,
-    required this.authentication
+    this.authentication
   });
 
   final String id;

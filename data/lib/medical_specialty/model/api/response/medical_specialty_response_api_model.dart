@@ -26,11 +26,10 @@ class MedicalSpecialtyItemResponseApiModel extends Equatable {
   final int id;
   final String name;
 
-  factory MedicalSpecialtyItemResponseApiModel.fromJson(Map<String, dynamic> json) =>
-      MedicalSpecialtyItemResponseApiModel(
-        id: json["id"],
-        name: json["name"],
-      );
+  factory MedicalSpecialtyItemResponseApiModel.fromJson(Map<String, dynamic> json) => MedicalSpecialtyItemResponseApiModel(
+    id: json["id"],
+    name: json["name"],
+  );
 
   @override
   List<Object> get props => [id, name];

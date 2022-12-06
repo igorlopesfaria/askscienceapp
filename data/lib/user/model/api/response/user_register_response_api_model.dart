@@ -11,7 +11,7 @@ class UserRegisterResponseApiModel extends Equatable {
   final UserResponseApiModel data;
 
   factory UserRegisterResponseApiModel.fromJson(Map<String, dynamic> json) => UserRegisterResponseApiModel(
-      data: json["data"]
+      data: UserResponseApiModel.fromJson(json["data"])
   );
 
   @override

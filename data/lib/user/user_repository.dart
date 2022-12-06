@@ -26,7 +26,14 @@ class UserRepository implements IUserRepository {
   @override
   Future<User> register(String name, String displayName, String email, String password, String crm, int specialty, bool agreeToTermOfUse) async {
     UserResponseApiModel responseApiModel =  (await _apiDataSource.register(
-      UserRegistrationRequestApiModel(name: name, displayName: displayName, specialty: specialty, crm: crm, email: email, agreeToTermOfUse: agreeToTermOfUse)
+      UserRegistrationRequestApiModel(
+          name: name,
+          displayName: displayName,
+          specialty: specialty,
+          crm: crm,
+          email: email,
+          password: password,
+          agreeToTermOfUse: agreeToTermOfUse)
     )).data;
 
     _localDataSource.insert(responseApiModel.mapLocalModel);
@@ -35,16 +42,14 @@ class UserRepository implements IUserRepository {
 
   @override
   Future<User> getInfo() async {
-    UserResponseApiModel responseApiModel =  (await _apiDataSource.getInfo()).data;
+    UserResponseApiModel responseApiModel = (await _apiDataSource.getInfo()).data;
     _localDataSource.insert(responseApiModel.mapLocalModel);
     return responseApiModel.mapModel;
   }
 
   @override
   Future<bool> resetPasswordByEmail(String email) async =>
-      await _apiDataSource.resetPasswordByEmail(
-      UserResetPasswordRequestApiModel(email: email)
-  );
+    await _apiDataSource.resetPasswordByEmail(UserResetPasswordRequestApiModel(email: email));
 
   @override
   Future<void> clear() async {
