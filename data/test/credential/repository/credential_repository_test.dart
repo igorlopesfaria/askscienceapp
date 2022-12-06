@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:data/credential/credentials_repository.dart';
+import 'package:data/credential/credential_repository.dart';
 import 'package:data/credential/data_source/credential_api_data_source.dart';
 import 'package:data/credential/data_source/credential_local_data_source.dart';
 import 'package:data/credential/model/api/credential_request_api_model.dart';
