@@ -11,6 +11,7 @@ abstract class ICredentialRepository {
   Future<Credential> authenticate(String email, String password);
   Future<Credential> findToken();
   Future<void> clearToken();
+  Future<Credential> insertToken(String accessToken, String refreshToken);
 }
 
 @Injectable(as: ICredentialRepository)
@@ -28,6 +29,16 @@ class CredentialRepository implements ICredentialRepository {
     CredentialTokenResponseApiModel tokenResponseApiModel = (await _apiDataSource.authenticate(requestModel)).data;
 
     CredentialTokenLocalModel localModel= tokenResponseApiModel.mapLocalModel;
+
+    await _localDataSource.insert(localModel);
+
+    return localModel.mapModel;
+  }
+
+
+  @override
+  Future<Credential> insertToken(String accessToken, String refreshToken) async {
+    CredentialTokenLocalModel localModel = CredentialTokenLocalModel(accessToken: accessToken, refreshToken: refreshToken);
 
     await _localDataSource.insert(localModel);
 

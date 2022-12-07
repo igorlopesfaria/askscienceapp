@@ -43,6 +43,13 @@ void main() {
     expect(result, credential);
   });
 
+  test('GIVEN insertToken() method called WHEN localData source returns LocalModel object THEN return domain Model converted',() async {
+
+    when(() => mockLocalDataSource.insert(any())).thenAnswer((_) => Future.value());
+    final result = await repository.insertToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ", "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
+    expect(result, credential);
+  });
+
   test('GIVEN authenticate() method called WHEN apiDataSource source returns APIModel object THEN return domain Model converted',() async {
 
     when(() => mockApiDataSource.authenticate(any())).thenAnswer((_) async => credentialFromAPIDataSource);
@@ -50,5 +57,6 @@ void main() {
     final result = await repository.authenticate("email@dominio.com.br", "senha");
     expect(result, credential);
   });
+
 
 }
