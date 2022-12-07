@@ -9,9 +9,8 @@ import 'package:injectable/injectable.dart';
 
 abstract class ICredentialRepository {
   Future<Credential> authenticate(String email, String password);
-  Future<Credential> findLocalToken();
+  Future<Credential> findToken();
   Future<void> clearToken();
-  Future<Credential> insertToken(String accessToken, String refreshToken);
 }
 
 @Injectable(as: ICredentialRepository)
@@ -35,18 +34,8 @@ class CredentialRepository implements ICredentialRepository {
     return localModel.mapModel;
   }
 
-
   @override
-  Future<Credential> insertToken(String accessToken, String refreshToken) async {
-    CredentialTokenLocalModel localModel = CredentialTokenLocalModel(accessToken: accessToken, refreshToken: refreshToken);
-
-    await _localDataSource.insert(localModel);
-
-    return localModel.mapModel;
-  }
-
-  @override
-  Future<Credential> findLocalToken() async => (await _localDataSource.find()).mapModel;
+  Future<Credential> findToken() async => (await _localDataSource.find()).mapModel;
 
 
   @override
